@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1a1b26" />
+    <title>CusucoMap</title>
+    <script type="module" crossorigin src="./assets/index-lgwivhsT.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BCRQtIGR.css">
+  </head>
+  <body>
+    <div id="app">
+      <header id="topbar">
+        <h1>CusucoMap</h1>
+        <div class="pill-group">
+          <button id="cusuco-filter-toggle" class="pill pill-button" hidden>Filtro &#9662;</button>
+          <button id="cusuco-list-toggle" class="pill pill-button" hidden>&#128203; Lista</button>
+          <button id="cusuco-alertas-toggle" class="pill pill-button">Alertas &#9662;</button>
+        </div>
+
+        <!-- Alertas placeholder - Pokémon and Incursiones tabs only. -->
+        <div id="cusuco-alertas-panel" class="type-filter-panel" hidden>
+          <div class="type-filter-header"><span>Alertas</span></div>
+          <p class="hint">Estamos trabajando en esto. ¡Muy pronto!</p>
+        </div>
+
+        <!-- Incursiones filter: team + pokémon name. -->
+        <div id="cusuco-incursiones-filter-panel" class="type-filter-panel" hidden>
+          <div class="type-filter-header">
+            <span>Filtro</span>
+            <div class="type-filter-header-actions">
+              <button id="incursiones-filter-clear" class="secondary">Mostrar todo</button>
+            </div>
+          </div>
+          <input id="raid-species-input" type="text" placeholder="Nombre de pokémon" autocomplete="off" />
+          <div class="quest-filter-buttons">
+            <button class="team-filter-btn" data-team="Mystic">Sabiduría</button>
+            <button class="team-filter-btn" data-team="Valor">Valor</button>
+            <button class="team-filter-btn" data-team="Instinct">Instinto</button>
+          </div>
+        </div>
+
+        <!-- Tareas filter: free text + Pokémon/Objetos. -->
+        <div id="cusuco-tareas-filter-panel" class="type-filter-panel" hidden>
+          <div class="type-filter-header">
+            <span>Filtro</span>
+            <div class="type-filter-header-actions">
+              <button id="tareas-filter-clear" class="secondary">Mostrar todo</button>
+            </div>
+          </div>
+          <input id="reward-search-input" type="text" placeholder="Buscar recompensa" autocomplete="off" />
+          <div class="quest-filter-buttons">
+            <button class="reward-filter-btn active" data-filter="all">Todo</button>
+            <button class="reward-filter-btn" data-filter="encounter">Pokémon</button>
+            <button class="reward-filter-btn" data-filter="item">Objetos</button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div id="map"></div>
+
+        <!-- Pokémon tab floating UI - shown only while that tab is active. -->
+        <div id="cusuco-pokemon-ui" class="cusuco-tab-ui">
+          <div id="iv-filter" class="iv-filter">
+            <button class="iv-filter-btn active" data-filter="all">Todos</button>
+            <button class="iv-filter-btn" data-filter="gt80">80%+</button>
+            <button class="iv-filter-btn" data-filter="gt90">90%+</button>
+            <button class="iv-filter-btn" data-filter="perfect">100%</button>
+          </div>
+          <div id="legend" class="legend">
+            <span class="legend-item"><span class="dot tier-gt80"></span>&gt;80% IV</span>
+            <span class="legend-item"><span class="dot tier-gt90"></span>&gt;90% IV</span>
+            <span class="legend-item"><span class="dot tier-perfect"></span>100% IV</span>
+          </div>
+        </div>
+      </main>
+
+      <nav id="tabbar" class="cusuco-tabbar">
+        <button class="tab-btn active" data-tab="pokemon">Pokémon</button>
+        <button class="tab-btn" data-tab="incursiones">Incursiones</button>
+        <button class="tab-btn" data-tab="tareas">Tareas</button>
+      </nav>
+
+      <div id="sheet-backdrop"></div>
+      <aside id="sheet">
+        <div id="sheet-handle"></div>
+        <button id="sheet-close" class="pane-close-btn" aria-label="Cerrar">&times;</button>
+        <div id="sheet-content"></div>
+      </aside>
+    </div>
+
+  </body>
+</html>
