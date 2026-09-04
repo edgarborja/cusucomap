@@ -13,10 +13,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>CusucoMap</title>
-    <script type="module" crossorigin src="./assets/index-D4wp72WI.js"></script>
+    <script type="module" crossorigin src="./assets/index-DHT3OB4Z.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CrgYZoEh.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-DhlxTaB-.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-D7AymGkX.css">
   </head>
   <body>
     <div id="app">
@@ -26,7 +26,7 @@
           CusucoMap
         </h1>
         <div class="pill-group">
-          <!-- Always visible (not tab-gated like Alertas/Filtro/Lista) -
+          <!-- Always visible (not tab-gated like Filtro/Lista) -
                account-level, not map-view-level. The badge is purely a
                "there's something new in here" nudge; it carries no text
                of its own, the panel explains what. -->
@@ -34,25 +34,14 @@
             Menú &#9662;
             <span id="cusuco-menu-badge" class="menu-badge" hidden></span>
           </button>
-          <button id="cusuco-alertas-toggle" class="pill pill-button">Alertas &#9662;</button>
         </div>
 
-        <!-- Menú: update check for now: friends/communication later. -->
+        <!-- Menú: update check for now; friends/communication later. -->
         <div id="cusuco-menu-panel" class="type-filter-panel" hidden>
-          <div class="type-filter-header">
-            <span>Menú</span>
-            <div class="type-filter-header-actions">
-              <button id="cusuco-check-update-btn" class="secondary">Buscar actualizaciones</button>
-            </div>
-          </div>
+          <div class="type-filter-header"><span>Menú</span></div>
           <p id="cusuco-update-status" class="hint">Ya tienes la última versión.</p>
+          <button id="cusuco-check-update-btn" class="secondary full">Buscar actualizaciones</button>
           <button id="cusuco-update-refresh-btn" class="full" hidden>Actualizar ahora</button>
-        </div>
-
-        <!-- Alertas placeholder - Pokémon and Incursiones tabs only. -->
-        <div id="cusuco-alertas-panel" class="type-filter-panel" hidden>
-          <div class="type-filter-header"><span>Alertas</span></div>
-          <p class="hint">Estamos trabajando en esto. ¡Muy pronto!</p>
         </div>
       </header>
 
