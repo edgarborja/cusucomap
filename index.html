@@ -13,10 +13,28 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>CusucoMap</title>
-    <script type="module" crossorigin src="./assets/index-DHT3OB4Z.js"></script>
+    <!-- Google tag (gtag.js) - skipped entirely (script never even
+         fetched, not just "configured off") when browsing from
+         localhost/127.0.0.1, so local dev traffic never reports. -->
+    <script>
+      (function () {
+        if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return;
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-WE6LL501C0");
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-WE6LL501C0";
+        document.head.appendChild(s);
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-Be7dCdF0.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CrgYZoEh.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-D7AymGkX.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-Du9PbOqU.css">
   </head>
   <body>
     <div id="app">
@@ -24,6 +42,7 @@
         <h1 class="cusuco-title">
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABCUExURQAAAA4GB+PkL8bGKf///5aTINrbLScgCxoaBbGwJUU/QJWTIAsEBXh1G7CuJTAqKt7fLpKOjwYGBgICAiggIQAAALSImwIAAAAWdFJOU////////////////////////////wAB0sDkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQBQYWludC5ORVQgNS4xLjEyEwFHdAAAALhlWElmSUkqAAgAAAAFABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAwAAADEBAgARAAAAWgAAAGmHBAABAAAAbAAAAAAAAACjkwAA6AMAAKOTAADoAwAAUGFpbnQuTkVUIDUuMS4xMgAAAwAAkAcABAAAADAyMzABoAMAAQAAAAEAAAAFoAQAAQAAAJYAAAAAAAAAAgABAAIABAAAAFI5OAACAAcABAAAADAxMDAAAAAAB3d+nrbM2hQAAADlSURBVDhPjdLbUsMwDARQraxCnVJKAf3/rzJaWbbLdBj0kDh7otSXiv9R4i4sdwcrwpGIi7JE0OLeIJUQxUSgp4xUTy+vIiYTTXRDVUQyOzObqFjIH0EhB0gMfYJ6zqVkDG2t99bGW+BSfLQAsY68Rw08AMUlVhmo7QIFjrdEKovIrxyxVUSz32j2P0R9tveBeQKF10jeVXu8d104WrdNYHBbaB9lqmp1rnHiwL2mxFa772g2J8ypmoUl+uemtIzz6kLlzi4r9K/ILKlsYvZmrawGS7dojkr3ZA39e+z3U4y/+sPjD+unGVQz0ZKmAAAAAElFTkSuQmCC" alt="" width="28" height="28" />
           CusucoMap
+          <button id="cusuco-beta-badge" class="beta-badge" aria-label="CusucoMap está en prueba">PRUEBA</button>
         </h1>
         <div class="pill-group">
           <!-- Always visible (not tab-gated like Filtro/Lista) -
@@ -31,19 +50,34 @@
                "there's something new in here" nudge; it carries no text
                of its own, the panel explains what. -->
           <button id="cusuco-menu-toggle" class="pill pill-button">
-            Menú &#9662;
+            Opciones &#9662;
             <span id="cusuco-menu-badge" class="menu-badge" hidden></span>
           </button>
         </div>
 
-        <!-- Menú: update check for now; friends/communication later. -->
+        <!-- Menú/Opciones: update check for now; friends/communication later. -->
         <div id="cusuco-menu-panel" class="type-filter-panel" hidden>
-          <div class="type-filter-header"><span>Menú</span></div>
+          <div class="type-filter-header"><span>Opciones</span></div>
           <p id="cusuco-update-status" class="hint">Ya tienes la última versión.</p>
           <button id="cusuco-check-update-btn" class="secondary full">Buscar actualizaciones</button>
           <button id="cusuco-update-refresh-btn" class="full" hidden>Actualizar ahora</button>
         </div>
       </header>
+
+      <!-- Beta disclaimer - opened by tapping the PRUEBA badge next to the
+           title, and once automatically per browser on first visit (see
+           cusuco-main.ts). Backdrop-click and the button both close it. -->
+      <div id="cusuco-beta-backdrop" class="modal-backdrop" hidden></div>
+      <div id="cusuco-beta-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-beta-title">
+        <div class="modal-title-row">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABCUExURQAAAA4GB+PkL8bGKf///5aTINrbLScgCxoaBbGwJUU/QJWTIAsEBXh1G7CuJTAqKt7fLpKOjwYGBgICAiggIQAAALSImwIAAAAWdFJOU////////////////////////////wAB0sDkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQBQYWludC5ORVQgNS4xLjEyEwFHdAAAALhlWElmSUkqAAgAAAAFABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAwAAADEBAgARAAAAWgAAAGmHBAABAAAAbAAAAAAAAACjkwAA6AMAAKOTAADoAwAAUGFpbnQuTkVUIDUuMS4xMgAAAwAAkAcABAAAADAyMzABoAMAAQAAAAEAAAAFoAQAAQAAAJYAAAAAAAAAAgABAAIABAAAAFI5OAACAAcABAAAADAxMDAAAAAAB3d+nrbM2hQAAADlSURBVDhPjdLbUsMwDARQraxCnVJKAf3/rzJaWbbLdBj0kDh7otSXiv9R4i4sdwcrwpGIi7JE0OLeIJUQxUSgp4xUTy+vIiYTTXRDVUQyOzObqFjIH0EhB0gMfYJ6zqVkDG2t99bGW+BSfLQAsY68Rw08AMUlVhmo7QIFjrdEKovIrxyxVUSz32j2P0R9tveBeQKF10jeVXu8d104WrdNYHBbaB9lqmp1rnHiwL2mxFa772g2J8ypmoUl+uemtIzz6kLlzi4r9K/ILKlsYvZmrawGS7dojkr3ZA39e+z3U4y/+sPjD+unGVQz0ZKmAAAAAElFTkSuQmCC" alt="" width="36" height="36" />
+          <h2 id="cusuco-beta-title">CusucoMap está en prueba</h2>
+        </div>
+        <p>Este es un experimento comunitario que estoy desarrollando para jugadores de la zona de Santa Tecla.</p>
+        <p>Por ahora estará disponible al menos hasta el 30 de septiembre. Después decidiré si tiene sentido seguir manteniéndolo.</p>
+        <p>Es gratis y puede cambiar, fallar o desaparecer sin previo aviso. No es un servicio comercial ni tiene soporte técnico formal.</p>
+        <button id="cusuco-beta-close-btn" class="full">Entendido, ver el mapa</button>
+      </div>
 
       <main>
         <div id="map"></div>
@@ -102,6 +136,14 @@
               <button class="reward-filter-btn" data-filter="item">Objetos</button>
             </div>
           </div>
+        </div>
+
+        <!-- Same bottom-left spot/look as the Pokémon tab's own IV legend
+             above - shown only while Incursiones/Tareas' filter is
+             actually narrowing something, so a filtered-down map reads as
+             "filtered" rather than "empty/broken". -->
+        <div id="cusuco-filter-legend" class="legend" hidden>
+          <span class="legend-item" id="cusuco-filter-legend-text"></span>
         </div>
       </main>
 
