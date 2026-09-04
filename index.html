@@ -13,10 +13,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>CusucoMap</title>
-    <script type="module" crossorigin src="./assets/index-D4yN9dd8.js"></script>
+    <script type="module" crossorigin src="./assets/index-D4wp72WI.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CrgYZoEh.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-CXBYaVS-.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DhlxTaB-.css">
   </head>
   <body>
     <div id="app">
@@ -26,47 +26,33 @@
           CusucoMap
         </h1>
         <div class="pill-group">
-          <button id="cusuco-filter-toggle" class="pill pill-button" hidden>Filtro &#9662;</button>
-          <button id="cusuco-list-toggle" class="pill pill-button" hidden>&#128203; Lista</button>
+          <!-- Always visible (not tab-gated like Alertas/Filtro/Lista) -
+               account-level, not map-view-level. The badge is purely a
+               "there's something new in here" nudge; it carries no text
+               of its own, the panel explains what. -->
+          <button id="cusuco-menu-toggle" class="pill pill-button">
+            Menú &#9662;
+            <span id="cusuco-menu-badge" class="menu-badge" hidden></span>
+          </button>
           <button id="cusuco-alertas-toggle" class="pill pill-button">Alertas &#9662;</button>
+        </div>
+
+        <!-- Menú: update check for now: friends/communication later. -->
+        <div id="cusuco-menu-panel" class="type-filter-panel" hidden>
+          <div class="type-filter-header">
+            <span>Menú</span>
+            <div class="type-filter-header-actions">
+              <button id="cusuco-check-update-btn" class="secondary">Buscar actualizaciones</button>
+            </div>
+          </div>
+          <p id="cusuco-update-status" class="hint">Ya tienes la última versión.</p>
+          <button id="cusuco-update-refresh-btn" class="full" hidden>Actualizar ahora</button>
         </div>
 
         <!-- Alertas placeholder - Pokémon and Incursiones tabs only. -->
         <div id="cusuco-alertas-panel" class="type-filter-panel" hidden>
           <div class="type-filter-header"><span>Alertas</span></div>
           <p class="hint">Estamos trabajando en esto. ¡Muy pronto!</p>
-        </div>
-
-        <!-- Incursiones filter: team + pokémon name. -->
-        <div id="cusuco-incursiones-filter-panel" class="type-filter-panel" hidden>
-          <div class="type-filter-header">
-            <span>Filtro</span>
-            <div class="type-filter-header-actions">
-              <button id="incursiones-filter-clear" class="secondary">Mostrar todo</button>
-            </div>
-          </div>
-          <input id="raid-species-input" type="text" placeholder="Nombre de pokémon" autocomplete="off" />
-          <div class="quest-filter-buttons">
-            <button class="team-filter-btn" data-team="Mystic">Sabiduría</button>
-            <button class="team-filter-btn" data-team="Valor">Valor</button>
-            <button class="team-filter-btn" data-team="Instinct">Instinto</button>
-          </div>
-        </div>
-
-        <!-- Tareas filter: free text + Pokémon/Objetos. -->
-        <div id="cusuco-tareas-filter-panel" class="type-filter-panel" hidden>
-          <div class="type-filter-header">
-            <span>Filtro</span>
-            <div class="type-filter-header-actions">
-              <button id="tareas-filter-clear" class="secondary">Mostrar todo</button>
-            </div>
-          </div>
-          <input id="reward-search-input" type="text" placeholder="Buscar recompensa" autocomplete="off" />
-          <div class="quest-filter-buttons">
-            <button class="reward-filter-btn active" data-filter="all">Todo</button>
-            <button class="reward-filter-btn" data-filter="encounter">Pokémon</button>
-            <button class="reward-filter-btn" data-filter="item">Objetos</button>
-          </div>
         </div>
       </header>
 
@@ -85,6 +71,47 @@
             <span class="legend-item"><span class="dot tier-gt80"></span>&gt;80% IV</span>
             <span class="legend-item"><span class="dot tier-gt90"></span>&gt;90% IV</span>
             <span class="legend-item"><span class="dot tier-perfect"></span>100% IV</span>
+          </div>
+        </div>
+
+        <!-- Incursiones/Tareas Filtro (+ Tareas' Lista) buttons and their
+             panels - same top-left spot, and same pill-row look, as the
+             Pokémon tab's IV filter above (never shown at the same time,
+             since only one tab's UI is visible at once). -->
+        <div id="cusuco-typefilter-anchor" class="cusuco-typefilter-anchor">
+          <button id="cusuco-filter-toggle" class="iv-filter-btn" hidden>&#9881;&#65039; Filtro &#9662;</button>
+          <button id="cusuco-list-toggle" class="iv-filter-btn" hidden>&#128203; Lista</button>
+
+          <!-- Incursiones filter: team + pokémon name. -->
+          <div id="cusuco-incursiones-filter-panel" class="type-filter-panel" hidden>
+            <div class="type-filter-header">
+              <span>Filtro</span>
+              <div class="type-filter-header-actions">
+                <button id="incursiones-filter-clear" class="secondary">Mostrar todo</button>
+              </div>
+            </div>
+            <input id="raid-species-input" type="text" placeholder="Nombre de pokémon" autocomplete="off" />
+            <div class="quest-filter-buttons">
+              <button class="team-filter-btn" data-team="Mystic">Sabiduría</button>
+              <button class="team-filter-btn" data-team="Valor">Valor</button>
+              <button class="team-filter-btn" data-team="Instinct">Instinto</button>
+            </div>
+          </div>
+
+          <!-- Tareas filter: free text + Pokémon/Objetos. -->
+          <div id="cusuco-tareas-filter-panel" class="type-filter-panel" hidden>
+            <div class="type-filter-header">
+              <span>Filtro</span>
+              <div class="type-filter-header-actions">
+                <button id="tareas-filter-clear" class="secondary">Mostrar todo</button>
+              </div>
+            </div>
+            <input id="reward-search-input" type="text" placeholder="Buscar recompensa" autocomplete="off" />
+            <div class="quest-filter-buttons">
+              <button class="reward-filter-btn active" data-filter="all">Todo</button>
+              <button class="reward-filter-btn" data-filter="encounter">Pokémon</button>
+              <button class="reward-filter-btn" data-filter="item">Objetos</button>
+            </div>
           </div>
         </div>
       </main>
