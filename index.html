@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-BR7E4m6p.js"></script>
+    <script type="module" crossorigin src="./assets/index-D3-q5Qop.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CrgYZoEh.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-GEuQDX5n.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-CRYe7x0N.css">
   </head>
   <body>
     <div id="app">
@@ -61,7 +61,6 @@
           <p id="cusuco-update-status" class="hint">Ya tienes la última versión.</p>
           <button id="cusuco-check-update-btn" class="secondary full">Buscar actualizaciones</button>
           <button id="cusuco-update-refresh-btn" class="full" hidden>Actualizar ahora</button>
-          <p id="cusuco-build-date" class="hint"></p>
         </div>
       </header>
 
@@ -146,6 +145,12 @@
         <div id="cusuco-filter-legend" class="legend" hidden>
           <span class="legend-item" id="cusuco-filter-legend-text"></span>
         </div>
+
+        <!-- Shown only while the long-absence watchdog (cusuco-main.ts) is
+             waiting for the network to come back before it can reload -
+             not tab-gated, since it can appear regardless of which tab was
+             open when the phone woke back up. -->
+        <div id="cusuco-reconnect-badge" class="reconnect-badge" hidden>Reconectando&hellip;</div>
       </main>
 
       <nav id="tabbar" class="cusuco-tabbar">
