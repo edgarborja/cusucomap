@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-D3-q5Qop.js"></script>
+    <script type="module" crossorigin src="./assets/index-05xUx9W0.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CrgYZoEh.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-CRYe7x0N.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-CN8CzF7C.css">
   </head>
   <body>
     <div id="app">
@@ -77,6 +77,17 @@
         <p>Por ahora estará disponible al menos hasta el 30 de septiembre. Después decidiré si tiene sentido seguir manteniéndolo.</p>
         <p>Es gratis y puede cambiar, fallar o desaparecer sin previo aviso. No es un servicio comercial ni tiene soporte técnico formal.</p>
         <button id="cusuco-beta-close-btn" class="full">Entendido, ver el mapa</button>
+      </div>
+
+      <!-- Shown when a shared "?spawn=<id>" deep link (see cusuco-main.ts's
+           parseDeepLinkSpawnId/Compartir button in cusuco-sidebar.ts)
+           resolves to nothing - the pokémon already despawned, or the link
+           is simply wrong. -->
+      <div id="cusuco-notfound-backdrop" class="modal-backdrop" hidden></div>
+      <div id="cusuco-notfound-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-notfound-title">
+        <h2 id="cusuco-notfound-title">Pokémon no encontrado</h2>
+        <p>Ese pokémon ya no está disponible. Puede que haya desaparecido o que el enlace haya caducado.</p>
+        <button id="cusuco-notfound-close-btn" class="full">Entendido</button>
       </div>
 
       <main>
