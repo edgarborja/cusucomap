@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-Dtu7nfwA.js"></script>
+    <script type="module" crossorigin src="./assets/index-CF1YfRSJ.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CrgYZoEh.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-CN8CzF7C.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-nwzqxmif.css">
   </head>
   <body>
     <div id="app">
@@ -162,6 +162,19 @@
              not tab-gated, since it can appear regardless of which tab was
              open when the phone woke back up. -->
         <div id="cusuco-reconnect-badge" class="reconnect-badge" hidden>Reconectando&hellip;</div>
+
+        <!-- Detached "peek" version of the spawn detail pane (⤢ in
+             cusuco-sidebar.ts's header, desktop only) - a small draggable
+             card positioned over the map instead of docked in #sheet. See
+             cusuco-main.ts's floatMode. Ported from the operator tool's own
+             #float-card (frontend/index.html) - close/reattach live here as
+             fixed buttons rather than inside renderFloatingSpawnCardEs's
+             own markup, so they don't move around as content changes. -->
+        <div id="float-card" class="float-card v2-float-card" hidden>
+          <button id="float-card-reattach" class="v2-icon-btn v2-float-overlay-btn" style="right:2.85rem" aria-label="Volver a la barra lateral" title="Volver a la barra lateral">&#8690;</button>
+          <button id="float-card-close" class="v2-icon-btn v2-float-overlay-btn" aria-label="Cerrar" title="Cerrar">&times;</button>
+          <div id="float-card-content"></div>
+        </div>
       </main>
 
       <nav id="tabbar" class="cusuco-tabbar">
