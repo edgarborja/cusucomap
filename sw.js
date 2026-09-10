@@ -3,11 +3,13 @@
 // manifest.webmanifest already uses) so its push scope covers the whole
 // app. Registered from src/push-notifications.ts.
 //
-// Payload shape ({title, body, url, tag}) matches the original design doc
-// (see push-notifications.ts's own header comment) - the worker's
-// push-sender.js is the actual source of truth for what it sends, which
-// this file has no visibility into, hence the defensive fallbacks below
-// rather than assuming every field is present.
+// Payload shape ({title, body, url, tag, icon}) matches the original design
+// doc (see push-notifications.ts's own header comment) plus the spawned
+// Pokémon's own sprite URL as `icon` (worker/services/notifications.js,
+// cusucomap-worker commit 6e0bc2e) - the worker's push-sender.js is the
+// actual source of truth for what it sends, which this file has no
+// visibility into, hence the defensive fallbacks below rather than
+// assuming every field is present.
 self.addEventListener("push", (event) => {
   let data = {};
   try {
@@ -18,11 +20,16 @@ self.addEventListener("push", (event) => {
   }
 
   const title = typeof data.title === "string" && data.title ? data.title : "CusucoMap";
+  // The large icon on the notification's right side - falls back to the
+  // static app icon if the sprite URL is missing (older worker, or a
+  // non-spawn push type later). Not the small badge (Android's own
+  // enforced monochrome-silhouette rendering) - that stays hardcoded.
+  const icon = typeof data.icon === "string" && data.icon ? data.icon : "./icon-192.png";
   event.waitUntil(
     self.registration.showNotification(title, {
       body: typeof data.body === "string" ? data.body : "",
       tag: typeof data.tag === "string" ? data.tag : undefined,
-      icon: "./icon-192.png",
+      icon,
       data: { url: typeof data.url === "string" ? data.url : "./" },
     })
   );
