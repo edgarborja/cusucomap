@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-Db9fsaG2.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/vendor-Bc5bFicM.js">
+    <script type="module" crossorigin src="./assets/index-R66gWOBp.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/vendor-C2t4d3vA.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-BQVxF-7C.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DzSeznU1.css">
   </head>
   <body>
     <div id="app">
@@ -61,6 +61,14 @@
           <p id="cusuco-update-status" class="hint">Ya tienes la última versión.</p>
           <button id="cusuco-check-update-btn" class="secondary full">Buscar actualizaciones</button>
           <button id="cusuco-update-refresh-btn" class="full" hidden>Actualizar ahora</button>
+          <!-- Global device notification toggle - see push-notifications.ts.
+               Not the sidebar's dev-only 🔔 (that's a separate, still-unbuilt
+               per-Pokémon alert concept). Label/status text set entirely from
+               JS (see setNotifyUiState there); the plain "Notificaciones"
+               starting text below is just a safe default before that first
+               run - no Nostr/technical terms anywhere in either. -->
+          <p id="cusuco-notify-status" class="hint" hidden></p>
+          <button id="cusuco-notify-toggle" class="secondary full">Notificaciones</button>
         </div>
       </header>
 
