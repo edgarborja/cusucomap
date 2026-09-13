@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-BFjS8k93.js"></script>
+    <script type="module" crossorigin src="./assets/index-ze4ftyBL.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-C2t4d3vA.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-kXNqYTWx.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-xveUTYyy.css">
   </head>
   <body>
     <div id="app">
@@ -69,6 +69,16 @@
                run - no Nostr/technical terms anywhere in either. -->
           <p id="cusuco-notify-status" class="hint" hidden></p>
           <button id="cusuco-notify-toggle" class="secondary full">Notificaciones</button>
+          <!-- Whether tapping a marker recenters the map on it (spotlight
+               still applies either way) - see centerOnActiveMarker in
+               cusuco-main.ts. -->
+          <label class="switch-row" for="cusuco-center-active-toggle">
+            <span>Centrar Marcador Activo</span>
+            <span class="switch">
+              <input type="checkbox" id="cusuco-center-active-toggle" checked />
+              <span class="switch-track"></span>
+            </span>
+          </label>
         </div>
       </header>
 
