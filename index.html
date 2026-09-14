@@ -31,7 +31,7 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-ChZq7yux.js"></script>
+    <script type="module" crossorigin src="./assets/index-DuzqPr6b.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CAMlcnpn.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
     <link rel="stylesheet" crossorigin href="./assets/index-Bm2wKGUq.css">
@@ -95,6 +95,21 @@
         <p>Por ahora estará disponible al menos hasta el 30 de septiembre. Después decidiré si tiene sentido seguir manteniéndolo.</p>
         <p>Es gratis y puede cambiar, fallar o desaparecer sin previo aviso. No es un servicio comercial ni tiene soporte técnico formal.</p>
         <button id="cusuco-beta-close-btn" class="full">Entendido, ver el mapa</button>
+      </div>
+
+      <!-- Location privacy disclaimer - shown once per browser the first
+           time "Mostrar mi ubicación" (my-location.ts) is switched on,
+           right alongside the browser's own geolocation permission
+           prompt. Same look as the beta disclaimer above. -->
+      <div id="cusuco-location-privacy-backdrop" class="modal-backdrop" hidden></div>
+      <div id="cusuco-location-privacy-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-location-privacy-title">
+        <div class="modal-title-row">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABCUExURQAAAA4GB+PkL8bGKf///5aTINrbLScgCxoaBbGwJUU/QJWTIAsEBXh1G7CuJTAqKt7fLpKOjwYGBgICAiggIQAAALSImwIAAAAWdFJOU////////////////////////////wAB0sDkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQBQYWludC5ORVQgNS4xLjEyEwFHdAAAALhlWElmSUkqAAgAAAAFABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAwAAADEBAgARAAAAWgAAAGmHBAABAAAAbAAAAAAAAACjkwAA6AMAAKOTAADoAwAAUGFpbnQuTkVUIDUuMS4xMgAAAwAAkAcABAAAADAyMzABoAMAAQAAAAEAAAAFoAQAAQAAAJYAAAAAAAAAAgABAAIABAAAAFI5OAACAAcABAAAADAxMDAAAAAAB3d+nrbM2hQAAADlSURBVDhPjdLbUsMwDARQraxCnVJKAf3/rzJaWbbLdBj0kDh7otSXiv9R4i4sdwcrwpGIi7JE0OLeIJUQxUSgp4xUTy+vIiYTTXRDVUQyOzObqFjIH0EhB0gMfYJ6zqVkDG2t99bGW+BSfLQAsY68Rw08AMUlVhmo7QIFjrdEKovIrxyxVUSz32j2P0R9tveBeQKF10jeVXu8d104WrdNYHBbaB9lqmp1rnHiwL2mxFa772g2J8ypmoUl+uemtIzz6kLlzi4r9K/ILKlsYvZmrawGS7dojkr3ZA39e+z3U4y/+sPjD+unGVQz0ZKmAAAAAElFTkSuQmCC" alt="" width="36" height="36" />
+          <h2 id="cusuco-location-privacy-title">CusucoMap respeta tu privacidad</h2>
+        </div>
+        <p>Tu ubicación se usa únicamente en tu dispositivo para mostrar dónde estás en el mapa.</p>
+        <p>No enviamos, almacenamos ni registramos tu ubicación.</p>
+        <button id="cusuco-location-privacy-close-btn" class="full">Entendido</button>
       </div>
 
       <!-- Shown when a shared "?spawn=<id>" deep link (see cusuco-main.ts's
