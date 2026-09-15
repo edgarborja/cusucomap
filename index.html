@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-Cv_P10NO.js"></script>
+    <script type="module" crossorigin src="./assets/index-DyS6flGN.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CAMlcnpn.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-DIpgSWE6.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-ugtKF_oG.css">
   </head>
   <body>
     <div id="app">
@@ -55,30 +55,48 @@
           </button>
         </div>
 
-        <!-- Menú/Opciones: update check for now; friends/communication later. -->
+        <!-- Menú/Opciones, grouped into labeled sections (.opciones-section-
+             label) - Alertas, Mapa, Feed (advanced/localhost-only, injected
+             by cusuco-main.ts), Aplicación. Several rows below are anchors
+             other modules insert their own content next to rather than
+             appending blindly to the panel's end, so insertion order keeps
+             matching this visual grouping regardless of module init order -
+             see alerts-modal.ts (Mis Alertas, after #cusuco-notify-toggle),
+             my-location.ts (Mostrar mi ubicación, after
+             #cusuco-center-active-row), and cusuco-main.ts's Feed block
+             (before #cusuco-opciones-app-section). -->
         <div id="cusuco-menu-panel" class="type-filter-panel" hidden>
           <div class="type-filter-header"><span>Opciones</span></div>
-          <p id="cusuco-update-status" class="hint">Ya tienes la última versión.</p>
-          <button id="cusuco-check-update-btn" class="secondary full">Buscar actualizaciones</button>
-          <button id="cusuco-update-refresh-btn" class="full" hidden>Actualizar ahora</button>
+
+          <div class="opciones-section-label">Alertas</div>
           <!-- Global device notification toggle - see push-notifications.ts.
-               Not the sidebar's dev-only 🔔 (that's a separate, still-unbuilt
-               per-Pokémon alert concept). Label/status text set entirely from
-               JS (see setNotifyUiState there); the plain "Notificaciones"
-               starting text below is just a safe default before that first
-               run - no Nostr/technical terms anywhere in either. -->
+               Label/status text set entirely from JS (see refreshUi there);
+               the plain "Notificaciones" starting text below is just a safe
+               default before that first run - no Nostr/technical terms
+               anywhere in either. The inline SVG is a literal copy of
+               icons.ts's BELL_ICON_SVG (can't import a TS module into raw
+               HTML) - keep both in sync if that icon ever changes. -->
           <p id="cusuco-notify-status" class="hint" hidden></p>
-          <button id="cusuco-notify-toggle" class="secondary full">Notificaciones</button>
+          <button id="cusuco-notify-toggle" class="secondary full"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg> Notificaciones</button>
+
+          <div class="opciones-section-label">Mapa</div>
           <!-- Whether tapping a marker recenters the map on it (spotlight
                still applies either way) - see centerOnActiveMarker in
                cusuco-main.ts. -->
-          <label class="switch-row" for="cusuco-center-active-toggle">
+          <label class="switch-row" id="cusuco-center-active-row" for="cusuco-center-active-toggle">
             <span>Centrar marcador activo</span>
             <span class="switch">
               <input type="checkbox" id="cusuco-center-active-toggle" checked />
               <span class="switch-track"></span>
             </span>
           </label>
+
+          <div id="cusuco-opciones-app-section">
+            <div class="opciones-section-label">Aplicación</div>
+            <button id="cusuco-check-update-btn" class="secondary full">Buscar actualizaciones</button>
+            <p id="cusuco-update-status" class="hint">Ya tienes la última versión.</p>
+            <button id="cusuco-update-refresh-btn" class="full" hidden>Actualizar ahora</button>
+          </div>
         </div>
       </header>
 
@@ -130,29 +148,59 @@
         <div id="cusuco-pokemon-ui" class="cusuco-tab-ui">
           <div id="iv-filter" class="iv-filter">
             <button class="iv-filter-btn active" data-filter="all">Todos</button>
-            <button class="iv-filter-btn" data-filter="gt80">80%+</button>
-            <button class="iv-filter-btn" data-filter="gt90">90%+</button>
-            <button class="iv-filter-btn" data-filter="perfect">100%</button>
+            <button class="iv-filter-btn" data-filter="star0">0&#9733;</button>
+            <button class="iv-filter-btn" data-filter="star3">3&#9733; <span class="dot tier-star3"></span></button>
+            <button class="iv-filter-btn" data-filter="star4">4&#9733; <span class="dot tier-star4"></span></button>
           </div>
           <div id="legend" class="legend">
-            <span class="legend-collapse-wrap">
-              <span id="cusuco-legend-collapse-dot" class="legend-collapse-dot" aria-hidden="true">&minus;</span>
-              <button id="cusuco-legend-collapse-btn" class="legend-collapse-btn" aria-label="Colapsar leyenda" title="Colapsar leyenda"></button>
+            <button id="cusuco-legend-collapse-btn" class="legend-collapse-btn" aria-label="Colapsar leyenda" title="Colapsar leyenda">
+              <span class="despawn-chip despawn-chip-0" aria-hidden="true"></span>
+              <span class="despawn-chip despawn-chip-1" aria-hidden="true"></span>
+              <span class="despawn-chip despawn-chip-2" aria-hidden="true"></span>
+              <span class="despawn-chip despawn-chip-3" aria-hidden="true"></span>
+              <span class="despawn-chip despawn-chip-4" aria-hidden="true"></span>
+              <span class="despawn-chip despawn-chip-5" aria-hidden="true"></span>
+              <span id="cusuco-legend-collapse-label" class="legend-collapse-label">&minus;</span>
+            </button>
+            <span class="legend-item legend-header">Minutos<br />restantes</span>
+            <span class="legend-item">
+              <span class="legend-chip-marker">
+                <span class="despawn-chip despawn-chip-0" aria-hidden="true"></span>
+                <span class="legend-chip-marker-label">10+</span>
+              </span>
             </span>
-            <span class="legend-item"><span class="dot tier-gt80"></span>&gt;80% IV</span>
-            <span class="legend-item"><span class="dot tier-gt90"></span>&gt;90% IV</span>
-            <span class="legend-item"><span class="dot tier-perfect"></span>100% IV</span>
-            <span class="legend-item"><span class="legend-chip-icon"></span>10+ minutos</span>
+            <span class="legend-item">
+              <span class="legend-chip-marker">
+                <span class="despawn-chip despawn-chip-0" aria-hidden="true"></span>
+                <span class="despawn-chip despawn-chip-1" aria-hidden="true"></span>
+                <span class="legend-chip-marker-label">20+</span>
+              </span>
+            </span>
+            <span class="legend-item">
+              <span class="legend-chip-marker">
+                <span class="despawn-chip despawn-chip-0" aria-hidden="true"></span>
+                <span class="despawn-chip despawn-chip-1" aria-hidden="true"></span>
+                <span class="despawn-chip despawn-chip-2" aria-hidden="true"></span>
+                <span class="legend-chip-marker-label">30+</span>
+              </span>
+            </span>
           </div>
         </div>
 
         <!-- Incursiones/Tareas Filtro (+ Tareas' Lista) buttons and their
              panels - same top-left spot, and same pill-row look, as the
              Pokémon tab's IV filter above (never shown at the same time,
-             since only one tab's UI is visible at once). -->
+             since only one tab's UI is visible at once). The inline SVG is
+             a literal copy of icons.ts's FILTER_ICON_SVG (can't import a TS
+             module into raw HTML) - keep both in sync if that icon ever
+             changes. Replaced the old ⚙️ gear emoji, which read more like a
+             settings icon than a filter one. -->
         <div id="cusuco-typefilter-anchor" class="cusuco-typefilter-anchor">
-          <button id="cusuco-filter-toggle" class="iv-filter-btn" hidden>&#9881;&#65039; Filtro &#9662;</button>
-          <button id="cusuco-list-toggle" class="iv-filter-btn" hidden>&#128203; Lista</button>
+          <button id="cusuco-filter-toggle" class="iv-filter-btn" hidden><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><polygon points="4,4 20,4 14,11 14,20 10,20 10,11"/></svg> Filtro &#9662;</button>
+          <!-- Inline SVG is a literal copy of icons.ts's LIST_ICON_SVG (can't
+               import a TS module into raw HTML) - keep both in sync if that
+               icon ever changes. Replaced the old 📋 clipboard emoji. -->
+          <button id="cusuco-list-toggle" class="iv-filter-btn" hidden><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><circle cx="5" cy="6" r="1.6"/><rect x="9" y="4.8" width="12" height="2.4" rx="1"/><circle cx="5" cy="12" r="1.6"/><rect x="9" y="10.8" width="12" height="2.4" rx="1"/><circle cx="5" cy="18" r="1.6"/><rect x="9" y="16.8" width="12" height="2.4" rx="1"/></svg> Lista</button>
 
           <!-- Incursiones filter: team + pokémon name. -->
           <div id="cusuco-incursiones-filter-panel" class="type-filter-panel" hidden>
