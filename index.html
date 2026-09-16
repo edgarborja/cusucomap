@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-ipa0ZeUr.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/vendor-Bgy_298b.js">
+    <script type="module" crossorigin src="./assets/index-vNO4XRJN.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/vendor-DbmjVLVD.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-Cegcs3uP.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-C27JglL_.css">
   </head>
   <body>
     <div id="app">
@@ -45,6 +45,16 @@
           <button id="cusuco-beta-badge" class="beta-badge" aria-label="CusucoMap está en prueba">PRUEBA</button>
         </h1>
         <div class="pill-group">
+          <!-- Cusucos scan request ("Explorar") - see cusuco-scan.ts,
+               which owns every bit of this button's state (hidden/shown,
+               label, disabled) from here on. Hidden by default: only
+               shown once checkScanSubscription confirms this device has
+               an active subscription, and only while the Pokémon tab is
+               active (cusuco-scan.ts tracks tab changes itself rather
+               than going through cusuco-main.ts's TAB_UI_IDS - that
+               mechanism only toggles `hidden`, which would fight this
+               button's own subscription-driven visibility). -->
+          <button id="cusuco-explorar-btn" class="pill pill-button" hidden>Explorar</button>
           <!-- Always visible (not tab-gated like Filtro/Lista) -
                account-level, not map-view-level. The badge is purely a
                "there's something new in here" nudge; it carries no text
@@ -141,8 +151,44 @@
         <button id="cusuco-notfound-close-btn" class="full">Entendido</button>
       </div>
 
+      <!-- Cusucos scan request ("Explorar") - see cusuco-scan.ts. -->
+
+      <!-- Confirms the tapped point before actually spending the day's
+           cusuco - same .modal/.modal-backdrop pattern as every other
+           dialog in this file. Text/remaining-count line set from JS. -->
+      <div id="cusuco-scan-confirm-backdrop" class="modal-backdrop" hidden></div>
+      <div id="cusuco-scan-confirm-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-scan-confirm-title">
+        <h2 id="cusuco-scan-confirm-title">¿Deseas enviar un cusuco aquí?</h2>
+        <p>Esta búsqueda tarda aproximadamente 1 minuto.</p>
+        <p id="cusuco-scan-confirm-remaining"></p>
+        <button id="cusuco-scan-confirm-yes-btn" class="full">Sí, enviar cusuco</button>
+        <button id="cusuco-scan-confirm-no-btn" class="full secondary">Elegir otro punto</button>
+      </div>
+
+      <!-- Private preview of a finished scan's results - count/title set
+           from JS. Publicar calls approveScanResults (makes them real,
+           public spawns); Mantener Privados just discards the local
+           preview, no RPC call at all (see nostr-rpc.ts's own comment on
+           why there's no explicit reject). -->
+      <div id="cusuco-scan-results-backdrop" class="modal-backdrop" hidden></div>
+      <div id="cusuco-scan-results-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-scan-results-title">
+        <h2 id="cusuco-scan-results-title"></h2>
+        <button id="cusuco-scan-publish-btn" class="full">Publicar</button>
+        <button id="cusuco-scan-keep-private-btn" class="full secondary">Mantener Privados</button>
+      </div>
+
       <main>
         <div id="map"></div>
+
+        <!-- Cusucos scan request's floating instructional/status notice
+             (see cusuco-scan.ts) - over the map rather than a blocking
+             modal, since the whole point of "Elige un punto..." is that
+             the map underneath stays tappable while it's showing. Also
+             reused (different text, auto-dismissing) for "Ya usaste tu
+             cusuco de hoy." - see cusuco-scan.ts's own notify(). position:
+             absolute like .iv-filter above needs to live directly under
+             `main` (position: relative), not outside it. -->
+        <div id="cusuco-scan-notice" class="scan-notice" hidden></div>
 
         <!-- Pokémon tab floating UI - shown only while that tab is active. -->
         <div id="cusuco-pokemon-ui" class="cusuco-tab-ui">
