@@ -24,7 +24,7 @@ self.addEventListener("push", (event) => {
   // static app icon if the sprite URL is missing (older worker, or a
   // non-spawn push type later). Not the small badge (Android's own
   // enforced monochrome-silhouette rendering) - that stays hardcoded.
-  const icon = typeof data.icon === "string" && data.icon ? data.icon : "./icon-192.png";
+  const icon = typeof data.icon === "string" && data.icon ? data.icon : "./icon-192x192.png";
   event.waitUntil(
     self.registration.showNotification(title, {
       body: typeof data.body === "string" ? data.body : "",

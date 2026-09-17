@@ -4,11 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#1a1b26" />
-    <link rel="icon" type="image/png" href="./sandshrew.png" />
+    <!-- Full favicon/PWA-icon set (cusuco/public/, from a favicon-
+         generator bundle) - separate from the in-app header mascot
+         (cusuco-main.ts/style.css's .header-mascot), which this doesn't
+         touch. Each size below is the file actually purpose-built for
+         that spot, not one image reused everywhere the way sandshrew.png/
+         icon-192.png used to be. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <link rel="mask-icon" href="./safari-pinned-tab.png" color="#1a1b26" />
+    <meta name="msapplication-TileColor" content="#1a1b26" />
+    <meta name="msapplication-TileImage" content="./mstile-150x150.png" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <!-- iOS Safari ignores the manifest above entirely for "Add to Home
          Screen" - name/icon/standalone mode there only come from these. -->
-    <link rel="apple-touch-icon" href="./icon-192.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="CusucoMap" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -31,7 +41,7 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-CTKiAZx4.js"></script>
+    <script type="module" crossorigin src="./assets/index-B092edvl.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CnGzBm2H.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
     <link rel="stylesheet" crossorigin href="./assets/index-BDHF1ZGm.css">
