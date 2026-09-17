@@ -31,16 +31,33 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-hhnlO7R3.js"></script>
+    <script type="module" crossorigin src="./assets/index-BFF-0jYw.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CnGzBm2H.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-D_9d1gns.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DLJywY7V.css">
   </head>
   <body>
     <div id="app">
       <header id="topbar">
+        <!-- The mascot the header used to show inline (28px, part of the
+             .cusuco-title flex row) - now its own fixed-position image so
+             it can be taller than the bar itself and hang down over the
+             map below it, top edge flush with the very top of the page.
+             Displayed width is kept equal to #topbar's own rendered
+             height at all times (cusuco-main.ts's syncMascotSize, since
+             that height is intrinsic/content-driven, not a fixed value a
+             plain CSS calc() could reliably mirror) - height then follows
+             automatically from the image's own aspect ratio (style.css's
+             height: auto), so this scales correctly at any resolution/
+             zoom/font-size setting without needing its own breakpoints.
+             width/height attributes below are just the initial/fallback
+             size (and the aspect ratio CSS derives height:auto from)
+             before that JS runs. src is static for now (just this one
+             pose); cusuco-main.ts will swap it once the conditions that
+             should change it are decided. See style.css's .header-mascot
+             for the positioning/stacking reasoning. -->
+        <img id="cusuco-header-mascot" class="header-mascot" src="./mascot/cusuco-normal.png" alt="" width="54" height="94" />
         <h1 class="cusuco-title">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABCUExURQAAAA4GB+PkL8bGKf///5aTINrbLScgCxoaBbGwJUU/QJWTIAsEBXh1G7CuJTAqKt7fLpKOjwYGBgICAiggIQAAALSImwIAAAAWdFJOU////////////////////////////wAB0sDkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQBQYWludC5ORVQgNS4xLjEyEwFHdAAAALhlWElmSUkqAAgAAAAFABoBBQABAAAASgAAABsBBQABAAAAUgAAACgBAwABAAAAAwAAADEBAgARAAAAWgAAAGmHBAABAAAAbAAAAAAAAACjkwAA6AMAAKOTAADoAwAAUGFpbnQuTkVUIDUuMS4xMgAAAwAAkAcABAAAADAyMzABoAMAAQAAAAEAAAAFoAQAAQAAAJYAAAAAAAAAAgABAAIABAAAAFI5OAACAAcABAAAADAxMDAAAAAAB3d+nrbM2hQAAADlSURBVDhPjdLbUsMwDARQraxCnVJKAf3/rzJaWbbLdBj0kDh7otSXiv9R4i4sdwcrwpGIi7JE0OLeIJUQxUSgp4xUTy+vIiYTTXRDVUQyOzObqFjIH0EhB0gMfYJ6zqVkDG2t99bGW+BSfLQAsY68Rw08AMUlVhmo7QIFjrdEKovIrxyxVUSz32j2P0R9tveBeQKF10jeVXu8d104WrdNYHBbaB9lqmp1rnHiwL2mxFa772g2J8ypmoUl+uemtIzz6kLlzi4r9K/ILKlsYvZmrawGS7dojkr3ZA39e+z3U4y/+sPjD+unGVQz0ZKmAAAAAElFTkSuQmCC" alt="" width="28" height="28" />
           CusucoMap
           <button id="cusuco-beta-badge" class="beta-badge" aria-label="CusucoMap está en prueba">PRUEBA</button>
         </h1>
@@ -202,12 +219,15 @@
            from JS. Publicar calls approveScanResults (makes them real,
            public spawns); Mantener Privados just discards the local
            preview, no RPC call at all (see nostr-rpc.ts's own comment on
-           why there's no explicit reject). -->
+           why there's no explicit reject). A 0-result scan has nothing to
+           publish or keep private, so it shows only cusuco-scan-back-btn
+           instead of these two - see cusuco-scan.ts's showResultsModal. -->
       <div id="cusuco-scan-results-backdrop" class="modal-backdrop" hidden></div>
       <div id="cusuco-scan-results-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-scan-results-title">
         <h2 id="cusuco-scan-results-title"></h2>
         <button id="cusuco-scan-publish-btn" class="full">Publicar</button>
         <button id="cusuco-scan-keep-private-btn" class="full secondary">Mantener Privados</button>
+        <button id="cusuco-scan-back-btn" class="full secondary" hidden>Volver al mapa</button>
       </div>
 
       <main>
@@ -222,6 +242,16 @@
              absolute like .iv-filter above needs to live directly under
              `main` (position: relative), not outside it. -->
         <div id="cusuco-scan-notice" class="scan-notice" hidden></div>
+
+        <!-- Cusucos scan "rest period" countdown (see cusuco-scan.ts) -
+             a separate element from the notice above, not reused, since
+             this one persists/updates continuously for up to 2 minutes
+             rather than being a one-shot auto-hiding message; the two
+             could otherwise show at once (e.g. a "search failed" toast
+             right as the rest period it also starts appears) and
+             .scan-rest-banner anchors to the bottom instead of the top so
+             they never overlap. Text/visibility set from JS. -->
+        <div id="cusuco-scan-rest-banner" class="scan-notice scan-rest-banner" hidden></div>
 
         <!-- Pokémon tab floating UI - shown only while that tab is active. -->
         <div id="cusuco-pokemon-ui" class="cusuco-tab-ui">
