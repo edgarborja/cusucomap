@@ -31,10 +31,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-BKHX6jmz.js"></script>
+    <script type="module" crossorigin src="./assets/index-CTKiAZx4.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CnGzBm2H.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-D-KkN7F-.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-BDHF1ZGm.css">
   </head>
   <body>
     <div id="app">
@@ -59,7 +59,12 @@
         <img id="cusuco-header-mascot" class="header-mascot" src="./mascot/cusuco-normal.png" alt="" width="54" height="94" />
         <h1 class="cusuco-title">
           CusucoMap
-          <button id="cusuco-beta-badge" class="beta-badge" aria-label="CusucoMap está en prueba">PRUEBA</button>
+          <!-- Hidden, not removed - openBetaModal (cusuco-main.ts) still
+               opens the same disclaimer automatically once per browser on
+               first visit; this badge was just the header's own visible
+               PRUEBA pill/manual-reopen affordance for it, which is what's
+               being hidden here, not the disclaimer feature itself. -->
+          <button id="cusuco-beta-badge" class="beta-badge" aria-label="CusucoMap está en prueba" hidden>PRUEBA</button>
         </h1>
         <div class="pill-group">
           <!-- Cusucos scan request ("Explorar") - see cusuco-scan.ts,
