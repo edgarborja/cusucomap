@@ -31,7 +31,7 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-BFAIHbLS.js"></script>
+    <script type="module" crossorigin src="./assets/index-D_S9dB3S.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CnGzBm2H.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
     <link rel="stylesheet" crossorigin href="./assets/index-D_9d1gns.css">
@@ -153,9 +153,42 @@
 
       <!-- Cusucos scan request ("Explorar") - see cusuco-scan.ts. -->
 
-      <!-- Confirms the tapped point before actually spending the day's
-           cusuco - same .modal/.modal-backdrop pattern as every other
-           dialog in this file. Text/remaining-count line set from JS. -->
+      <!-- First step after tapping Explorar: area scan (tap a point) vs
+           species scan (search the whole map for one species). -->
+      <div id="cusuco-scan-mode-backdrop" class="modal-backdrop" hidden></div>
+      <div id="cusuco-scan-mode-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-scan-mode-title">
+        <h2 id="cusuco-scan-mode-title">¿Qué quieres buscar?</h2>
+        <button id="cusuco-scan-mode-area-btn" class="full">Un área</button>
+        <button id="cusuco-scan-mode-species-btn" class="full">Una especie</button>
+        <button id="cusuco-scan-mode-cancel-btn" class="full secondary">Cancelar</button>
+      </div>
+
+      <!-- Species scan's own picker - reuses the exact same search+
+           autocomplete markup/classes as "Mis Alertas" (alerts-modal.ts),
+           just single-select (picking an item proceeds straight to the
+           confirm modal below instead of adding to a list). -->
+      <div id="cusuco-scan-species-backdrop" class="modal-backdrop" hidden></div>
+      <div id="cusuco-scan-species-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-scan-species-title">
+        <h2 id="cusuco-scan-species-title">¿Qué especie buscar?</h2>
+        <div class="alert-species-search-wrap">
+          <input
+            type="text"
+            id="cusuco-scan-species-input"
+            placeholder="Buscar especie&hellip;"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+          <ul class="alert-species-autocomplete" id="cusuco-scan-species-autocomplete" hidden></ul>
+        </div>
+        <button id="cusuco-scan-species-cancel-btn" class="full secondary" style="margin-top:.75rem">Cancelar</button>
+      </div>
+
+      <!-- Confirms the scan (tapped point, or chosen species) before
+           actually spending the day's cusuco - same .modal/.modal-backdrop
+           pattern as every other dialog in this file. Title/no-button text
+           and remaining-count line all set from JS, since they differ
+           between area and species mode. -->
       <div id="cusuco-scan-confirm-backdrop" class="modal-backdrop" hidden></div>
       <div id="cusuco-scan-confirm-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="cusuco-scan-confirm-title">
         <h2 id="cusuco-scan-confirm-title">¿Deseas enviar un cusuco aquí?</h2>
