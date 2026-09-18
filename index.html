@@ -41,10 +41,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-B4LdSa0e.js"></script>
+    <script type="module" crossorigin src="./assets/index-B-Oh0KAr.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CnGzBm2H.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-BooHscxB.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-D9h_eojk.css">
   </head>
   <body>
     <div id="app">
@@ -226,8 +226,11 @@
         <!-- Only ever reachable by a subscribed device (Explorar itself is
              subscription-gated, and the FUNDADOR badge is this modal's
              other entry point) - so unconditionally shown, no visibility
-             check needed against subscription state. -->
-        <p class="scan-mode-founder-note">Eres FUNDADOR — esto te da acceso a explorar.</p>
+             check needed against subscription state. Text set by
+             showModeChoice (cusuco-scan.ts), not static here - spells out
+             what the FUNDADOR badge's own numbered indicator means
+             (cusucosRemaining), which nothing else in the UI explains. -->
+        <p id="cusuco-scan-mode-founder-note" class="scan-mode-founder-note"></p>
         <button id="cusuco-scan-mode-area-btn" class="full">Un área</button>
         <button id="cusuco-scan-mode-species-btn" class="full">Una especie</button>
         <button id="cusuco-scan-mode-cancel-btn" class="full secondary">Cancelar</button>
