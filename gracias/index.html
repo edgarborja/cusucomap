@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Gracias por apoyar CusucoMap</title>
+
+  <meta
+    name="description"
+    content="Gracias por apoyar el desarrollo y mantenimiento de CusucoMap."
+  >
+
+  <style>
+    :root {
+      --bg: #f3f5ef;
+      --card: #ffffff;
+      --navy: #202235;
+      --navy2: #292c45;
+      --text: #252738;
+      --muted: #70727f;
+      --brand: #e3e42f;
+      --brand-dark: #aaa913;
+      --gold: #f3c64d;
+      --border: #dedfd7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    .topbar {
+      height: 58px;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+
+    .page {
+      width: min(calc(100% - 28px), 520px);
+      margin: 0 auto;
+      padding: 46px 0 60px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px 24px;
+      text-align: center;
+      box-shadow: 0 10px 32px rgba(25, 28, 45, 0.07);
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--brand);
+      box-shadow: 0 4px 0 var(--brand-dark);
+      font-size: 34px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 29px;
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+    }
+
+    .lead {
+      margin: 15px auto 0;
+      max-width: 400px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .message {
+      margin: 25px 0 0;
+      padding: 17px;
+      border-radius: 14px;
+      background: #f7f8f2;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .message strong {
+      color: var(--navy);
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      margin-top: 24px;
+      padding: 15px 18px;
+      border-radius: 13px;
+      background: var(--brand);
+      color: #202214;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 900;
+      box-shadow: 0 3px 0 var(--brand-dark);
+    }
+
+    .button:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 var(--brand-dark);
+    }
+
+    .secondary {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .secondary:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 28px;
+      color: #8a8c95;
+      font-size: 11px;
+      line-height: 1.5;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="brand">CusucoMap</div>
+  </header>
+
+  <main class="page">
+
+    <section class="card">
+
+      <div class="icon" id="icon">♥</div>
+
+      <h1 id="title">
+        ¡Gracias por apoyar CusucoMap!
+      </h1>
+
+      <p class="lead" id="lead">
+        Tu aporte ayuda a cubrir los costos del proyecto y a seguir
+        desarrollando nuevas funciones para la comunidad.
+      </p>
+
+      <div class="message" id="message">
+        <strong>No necesitas hacer nada más.</strong><br>
+        Tu apoyo significa mucho para este pequeño proyecto comunitario.
+      </div>
+
+      <a class="button" href="/">
+        Volver al mapa
+      </a>
+
+      <a class="secondary" href="/fundador/">
+        Conocer la membresía FUNDADOR
+      </a>
+
+    </section>
+
+    <footer>
+      CusucoMap es un proyecto comunitario independiente y experimental.
+    </footer>
+
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const tipo = params.get("tipo");
+
+    if (tipo === "fundador") {
+      document.getElementById("icon").textContent = "★";
+
+      document.getElementById("title").textContent =
+        "¡Bienvenido, FUNDADOR!";
+
+      document.getElementById("lead").textContent =
+        "Gracias por ayudar a mantener CusucoMap funcionando y apoyar su desarrollo.";
+
+      document.getElementById("message").innerHTML = `
+        <strong>Estamos activando tus beneficios.</strong><br>
+        Tu insignia FUNDADOR, tus 3 Cusucos diarios y el resto de beneficios
+        aparecerán cuando CusucoMap reciba la confirmación de PayPal.
+      `;
+
+      document.querySelector(".secondary").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
