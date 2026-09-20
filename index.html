@@ -41,10 +41,10 @@
         document.head.appendChild(s);
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-C6uagLLa.js"></script>
+    <script type="module" crossorigin src="./assets/index-8yX04V47.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/vendor-CnGzBm2H.js">
     <link rel="stylesheet" crossorigin href="./assets/vendor-MGNviBeR.css">
-    <link rel="stylesheet" crossorigin href="./assets/index-D9h_eojk.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-Bzlk_6XQ.css">
   </head>
   <body>
     <div id="app">
@@ -408,11 +408,19 @@
           <span class="legend-item" id="cusuco-filter-legend-text"></span>
         </div>
 
-        <!-- Shown only while the long-absence watchdog (cusuco-main.ts) is
-             waiting for the network to come back before it can reload -
-             not tab-gated, since it can appear regardless of which tab was
-             open when the phone woke back up. -->
-        <div id="cusuco-reconnect-badge" class="reconnect-badge" hidden>Reconectando&hellip;</div>
+        <!-- Shown as soon as the long-absence watchdog (cusuco-main.ts)
+             starts trying to recover a stale connection, not just once it's
+             already given up on the graceful path - not tab-gated, since it
+             can appear regardless of which tab was open when the phone woke
+             back up. The Refrescar button only appears once
+             RECONNECT_BUDGET_MS has passed with no change in connection
+             (cusuco-main.ts), so a visitor stuck waiting on the automatic
+             fetch-gated reload loop has a manual way out instead of only
+             ever being told to force-quit the app. -->
+        <div id="cusuco-reconnect-badge" class="reconnect-badge" hidden>
+          Reconectando&hellip;
+          <button id="cusuco-reconnect-refresh-btn" class="reconnect-refresh-btn" type="button" hidden>Refrescar</button>
+        </div>
 
         <!-- Detached "peek" version of the spawn detail pane (⤢ in
              cusuco-sidebar.ts's header, desktop only) - a small draggable
